@@ -1,0 +1,3234 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Vatan yagona</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Onest:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* =====================================================================
+   1. TOKENLAR  (Kunduz = light, Tun = night)
+   ===================================================================== */
+    :root {
+      color-scheme: light;
+      --bg: #eaf4f5;
+      --bg2: #d9ebee;
+      --surface: #ffffff;
+      --surface2: #f2f9f9;
+      --ink: #0c2330;
+      --muted: #456270;
+      --primary: #0a7f90;
+      --primary-ink: #ffffff;
+      --green: #1b9e34;
+      --gold: #b9830f;
+      --red: #c8102e;
+      --line: rgba(12, 35, 48, 0.14);
+      --shadow: 0 18px 40px -22px rgba(10, 60, 80, 0.5);
+      --glow: rgba(10, 127, 144, 0.2);
+      --star-opacity: 0;
+      --p1: #0a7f90;
+      --p2: #1b9e34;
+      --p3: #c8902a;
+      --font-display: "Unbounded", "Arial Black", "Segoe UI", sans-serif;
+      --font-body: "Onest", "Segoe UI", system-ui, -apple-system, sans-serif;
+      --hdr: 64px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --bg: #070d24;
+        --bg2: #0b1433;
+        --surface: #101c44;
+        --surface2: #0c1638;
+        --ink: #eaf1ff;
+        --muted: #a3b4d9;
+        --primary: #3fd6e6;
+        --primary-ink: #04121f;
+        --green: #52d96b;
+        --gold: #f4c95d;
+        --red: #ff5d73;
+        --line: rgba(234, 241, 255, 0.16);
+        --shadow: 0 20px 44px -22px rgba(0, 0, 0, 0.85);
+        --glow: rgba(63, 214, 230, 0.18);
+        --star-opacity: 1;
+        --p1: #3fd6e6;
+        --p2: #52d96b;
+        --p3: #f4c95d;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #070d24;
+      --bg2: #0b1433;
+      --surface: #101c44;
+      --surface2: #0c1638;
+      --ink: #eaf1ff;
+      --muted: #a3b4d9;
+      --primary: #3fd6e6;
+      --primary-ink: #04121f;
+      --green: #52d96b;
+      --gold: #f4c95d;
+      --red: #ff5d73;
+      --line: rgba(234, 241, 255, 0.16);
+      --shadow: 0 20px 44px -22px rgba(0, 0, 0, 0.85);
+      --glow: rgba(63, 214, 230, 0.18);
+      --star-opacity: 1;
+      --p1: #3fd6e6;
+      --p2: #52d96b;
+      --p3: #f4c95d;
+    }
+
+    /* =====================================================================
+   2. ASOS
+   ===================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--hdr) + env(safe-area-inset-top, 0px) + 8px);
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      background-image: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      background-attachment: fixed;
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      overflow-x: hidden;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    img,
+    svg,
+    canvas {
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-display);
+      line-height: 1.15;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      margin: 0 0 1rem;
+      max-width: 66ch;
+    }
+
+    a {
+      color: var(--primary);
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .wrap {
+      width: min(1120px, 100% - 2.5rem);
+      margin-inline: auto;
+    }
+
+    section {
+      position: relative;
+      padding-block: clamp(4rem, 9vw, 7rem);
+    }
+
+    .sec-head {
+      margin-bottom: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .sec-head h2 {
+      font-size: clamp(1.7rem, 4.4vw, 2.9rem);
+      font-weight: 900;
+      margin-bottom: 0.9rem;
+    }
+
+    .sec-head p {
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    /* View Transition: tun/kunduz almashganda doira kengayadi */
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+
+    ::view-transition-old(root) {
+      z-index: 1;
+    }
+
+    ::view-transition-new(root) {
+      z-index: 2;
+    }
+
+    /* =====================================================================
+   3. FON EFFEKTLARI
+   ===================================================================== */
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+      z-index: 100;
+      background: linear-gradient(90deg, #0099b5 0 33%, #ffffff 33% 66%, #1eb53a 66% 100%);
+      box-shadow: 0 0 12px var(--glow);
+    }
+
+    .spot {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 30%), var(--glow), transparent 60%);
+    }
+
+    #stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: var(--star-opacity);
+      transition: opacity 0.8s;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: #fff;
+      animation: twinkle var(--d, 3s) ease-in-out var(--delay, 0s) infinite;
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: 0.15;
+        transform: scale(0.8);
+      }
+
+      50% {
+        opacity: 0.95;
+        transform: scale(1.25);
+      }
+    }
+
+    .shoot {
+      position: absolute;
+      height: 2px;
+      width: 140px;
+      background: linear-gradient(90deg, transparent, #fff);
+      transform: rotate(-28deg);
+      opacity: 0;
+      animation: shoot 1.3s ease-out forwards;
+    }
+
+    @keyframes shoot {
+      0% {
+        opacity: 0;
+        translate: 0 0;
+      }
+
+      15% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        translate: -360px 200px;
+      }
+    }
+
+    main,
+    header.top,
+    footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =====================================================================
+   4. SARLAVHA (HEADER)
+   ===================================================================== */
+    header.top {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 50;
+      height: var(--hdr);
+      display: flex;
+      align-items: center;
+      backdrop-filter: blur(14px) saturate(1.4);
+      -webkit-backdrop-filter: blur(14px) saturate(1.4);
+      background: color-mix(in srgb, var(--bg) 72%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .top .wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 0.25rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      flex: 1;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: var(--glow);
+      color: var(--ink);
+    }
+
+    .tools {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      cursor: pointer;
+      transition: transform 0.25s, background 0.25s;
+    }
+
+    .icon-btn:hover {
+      transform: rotate(18deg) scale(1.06);
+    }
+
+    .icon-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ico-sun {
+      display: none;
+    }
+
+    :root[data-theme="dark"] .ico-sun {
+      display: block;
+    }
+
+    :root[data-theme="dark"] .ico-moon {
+      display: none;
+    }
+
+    .snd-off {
+      display: none;
+    }
+
+    .icon-btn[aria-pressed="false"] .snd-on {
+      display: none;
+    }
+
+    .icon-btn[aria-pressed="false"] .snd-off {
+      display: block;
+    }
+
+    @media (max-width: 820px) {
+      .brand span {
+        display: none;
+      }
+    }
+
+    /* =====================================================================
+   5. TUGMALAR
+   ===================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.4rem;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: var(--primary-ink);
+      border-color: transparent;
+    }
+
+    .btn.small {
+      padding: 0.5rem 0.9rem;
+      font-size: 0.92rem;
+      border-radius: 10px;
+    }
+
+    .btn[disabled] {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    /* =====================================================================
+   6. HERO
+   ===================================================================== */
+    .hero {
+      min-height: calc(100svh - var(--hdr));
+      display: grid;
+      align-items: end;
+      padding-block: 0;
+      overflow: hidden;
+    }
+
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+      touch-action: pan-y;
+    }
+
+    .hero-copy {
+      position: relative;
+      padding-bottom: clamp(2rem, 6vh, 4rem);
+      pointer-events: none;
+    }
+
+    .hero-copy>* {
+      pointer-events: auto;
+    }
+
+    .hero-copy .lead {
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      max-width: 40ch;
+      color: var(--ink);
+    }
+
+    .hero-copy .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .shape-name {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+    }
+
+    /* =====================================================================
+   7. RAQAMLAR
+   ===================================================================== */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .stat b {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      color: var(--primary);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .clock {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 2rem;
+      border-radius: 28px;
+      padding: 2rem;
+      background:
+        linear-gradient(115deg, #0099b5 0 8%, transparent 8%),
+        linear-gradient(var(--surface), var(--surface));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding-left: 3rem;
+    }
+
+    .clock .days {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(3rem, 9vw, 6rem);
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .clock .parts {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .clock .parts div {
+      text-align: center;
+      min-width: 64px;
+    }
+
+    .clock .parts b {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--green);
+    }
+
+    .clock .parts small {
+      color: var(--muted);
+    }
+
+    .clock p {
+      margin: 0 0 0.8rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 860px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .clock {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding-left: 2rem;
+      }
+    }
+
+    /* =====================================================================
+   8. TARIX (TIMELINE)
+   ===================================================================== */
+    .tl {
+      position: relative;
+      padding-left: 0;
+      list-style: none;
+      margin: 0;
+    }
+
+    .tl::before,
+    .tl::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 3px;
+      margin-left: -1.5px;
+      border-radius: 3px;
+    }
+
+    .tl::before {
+      bottom: 0;
+      background: var(--line);
+    }
+
+    .tl::after {
+      height: var(--fill, 0px);
+      background: linear-gradient(180deg, #0099b5, #1eb53a);
+      box-shadow: 0 0 14px var(--glow);
+    }
+
+    .tl li {
+      position: relative;
+      width: 50%;
+      padding: 0 2.6rem 3rem 0;
+      text-align: right;
+    }
+
+    .tl li:nth-child(even) {
+      margin-left: 50%;
+      padding: 0 0 3rem 2.6rem;
+      text-align: left;
+    }
+
+    .tl li:last-child {
+      padding-bottom: 0;
+    }
+
+    .tl .dot {
+      position: absolute;
+      top: 0.4rem;
+      right: -9px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 3px solid var(--line);
+      transition: border-color 0.4s, background 0.4s, box-shadow 0.4s, transform 0.4s;
+    }
+
+    .tl li:nth-child(even) .dot {
+      right: auto;
+      left: -9px;
+    }
+
+    .tl li.lit .dot {
+      border-color: var(--primary);
+      background: var(--primary);
+      box-shadow: 0 0 0 6px var(--glow);
+      transform: scale(1.15);
+    }
+
+    .tl .year {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+
+    .tl h3 {
+      font-size: 1.1rem;
+      margin: 0.2rem 0 0.4rem;
+    }
+
+    .tl p {
+      color: var(--muted);
+      margin-left: auto;
+      font-size: 1rem;
+    }
+
+    .tl li:nth-child(even) p {
+      margin-left: 0;
+    }
+
+    @media (max-width: 720px) {
+
+      .tl::before,
+      .tl::after {
+        left: 9px;
+      }
+
+      .tl li,
+      .tl li:nth-child(even) {
+        width: 100%;
+        margin-left: 0;
+        padding: 0 0 2.4rem 2.6rem;
+        text-align: left;
+      }
+
+      .tl .dot,
+      .tl li:nth-child(even) .dot {
+        left: 0;
+        right: auto;
+      }
+
+      .tl p,
+      .tl li:nth-child(even) p {
+        margin-left: 0;
+      }
+    }
+
+    /* =====================================================================
+   9. RAMZLAR (BAYROQ + FLIP KARTALAR)
+   ===================================================================== */
+    .symbols {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .flag-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: clamp(1rem, 3vw, 2rem);
+      box-shadow: var(--shadow);
+    }
+
+    .flag-box svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.25));
+    }
+
+    .flag-box .pole {
+      height: 10px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #8d939a, #e9edf1, #8d939a);
+      margin-bottom: 0.7rem;
+    }
+
+    .flag-box .ctl {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .flag-box input[type="range"] {
+      flex: 1;
+      accent-color: var(--primary);
+    }
+
+    .flips {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .flip {
+      perspective: 900px;
+      border: 0;
+      padding: 0;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      min-height: 150px;
+    }
+
+    .flip .inner {
+      position: relative;
+      display: block;
+      height: 100%;
+      min-height: 150px;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .flip.flipped .inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip .face {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.2rem 1.4rem;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .flip .back {
+      transform: rotateY(180deg);
+      background: var(--surface2);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .flip .face h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .flip .face small {
+      color: var(--muted);
+    }
+
+    @media (max-width: 860px) {
+      .symbols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =====================================================================
+   10. HUDUDLAR (TILE MAP)
+   ===================================================================== */
+    .map-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 1.2rem;
+      align-items: center;
+    }
+
+    .field {
+      padding: 0.7rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      font: inherit;
+      min-width: 0;
+    }
+
+    .map-scroll {
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .tilemap {
+      display: grid;
+      grid-template-columns: repeat(9, minmax(76px, 1fr));
+      grid-template-rows: repeat(3, 92px);
+      gap: 8px;
+      min-width: 720px;
+    }
+
+    .tile {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      padding: 0.5rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      line-height: 1.2;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, opacity 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+
+    .tile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, hsl(var(--h) 80% 55% / 0.28), transparent 70%);
+    }
+
+    .tile span {
+      position: relative;
+    }
+
+    .tile:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: var(--shadow);
+    }
+
+    .tile.sel {
+      background: var(--primary);
+      color: var(--primary-ink);
+      box-shadow: 0 0 0 4px var(--glow), var(--shadow);
+    }
+
+    .tile.dim {
+      opacity: 0.25;
+    }
+
+    .region-card {
+      margin-top: 1.4rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.6rem;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 1.6rem;
+      box-shadow: var(--shadow);
+    }
+
+    .region-card .badge {
+      width: 84px;
+      height: 84px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: #fff;
+      background: hsl(var(--h) 70% 42%);
+    }
+
+    .region-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .region-card .meta {
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .region-card p {
+      margin: 0;
+    }
+
+    .region-card.bump {
+      animation: bump 0.45s ease;
+    }
+
+    @keyframes bump {
+      0% {
+        transform: scale(0.97);
+      }
+
+      60% {
+        transform: scale(1.015);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .region-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =====================================================================
+   11. SIYMOLAR (3D TILT KARTALAR)
+   ===================================================================== */
+    .people {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.1rem;
+    }
+
+    .person {
+      --rx: 0deg;
+      --ry: 0deg;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.3rem;
+      box-shadow: var(--shadow);
+      transform: perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));
+      transition: transform 0.15s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .person::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(240px circle at var(--gx, 50%) var(--gy, 0%), hsl(var(--h) 90% 60% / 0.22), transparent 65%);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .person:hover::after {
+      opacity: 1;
+    }
+
+    .person .mono {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      color: #fff;
+      background: linear-gradient(135deg, hsl(var(--h) 75% 45%), hsl(calc(var(--h) + 40) 70% 38%));
+      margin-bottom: 0.9rem;
+    }
+
+    .person h3 {
+      font-size: 1.02rem;
+    }
+
+    .person .yrs {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .person p {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    @media (max-width: 980px) {
+      .people {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .people {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =====================================================================
+   12. NAQSH USTAXONASI
+   ===================================================================== */
+    .workshop {
+      display: grid;
+      grid-template-columns: minmax(0, 560px) 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .canvas-frame {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at center, var(--glow), transparent 70%),
+        var(--surface2);
+      box-shadow: var(--shadow);
+    }
+
+    #patCanvas {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      touch-action: none;
+      cursor: crosshair;
+    }
+
+    .canvas-frame::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      margin: -4px 0 0 -4px;
+      border-radius: 50%;
+      background: var(--primary);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .panel {
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .panel label {
+      display: grid;
+      gap: 0.3rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .panel input[type="range"] {
+      width: 100%;
+      accent-color: var(--primary);
+    }
+
+    .panel .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .panel output {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .swatch {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 3px solid var(--surface);
+      box-shadow: 0 0 0 1px var(--line);
+      cursor: pointer;
+      background: var(--c);
+      transition: transform 0.15s;
+    }
+
+    .swatch:hover {
+      transform: scale(1.12);
+    }
+
+    .swatch[aria-pressed="true"] {
+      box-shadow: 0 0 0 3px var(--primary);
+    }
+
+    .swatch.rainbow {
+      background: conic-gradient(red, orange, yellow, green, cyan, blue, magenta, red);
+    }
+
+    .check {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--ink);
+    }
+
+    .check input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--primary);
+    }
+
+    @media (max-width: 860px) {
+      .workshop {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =====================================================================
+   13. FONUSLAR
+   ===================================================================== */
+    .sky {
+      position: relative;
+      height: 420px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #0c1745 0%, #3c2a6b 55%, #ee8a52 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .sky .hills {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 70px;
+      background:
+        radial-gradient(120px 60px at 12% 100%, #1a1030 98%, transparent 100%),
+        radial-gradient(180px 70px at 40% 100%, #140c26 98%, transparent 100%),
+        radial-gradient(150px 55px at 70% 100%, #1a1030 98%, transparent 100%),
+        radial-gradient(130px 65px at 94% 100%, #140c26 98%, transparent 100%);
+    }
+
+    .lantern {
+      --rise: 460px;
+      position: absolute;
+      bottom: -110px;
+      width: 78px;
+      animation: rise var(--t, 20s) linear var(--dl, 0s) infinite;
+      will-change: transform;
+    }
+
+    .lantern .body {
+      display: grid;
+      place-items: center;
+      height: 92px;
+      padding: 0.5rem;
+      border-radius: 16px 16px 24px 24px;
+      background: radial-gradient(circle at 50% 70%, #fff3b8, #ffb43a 70%, #f08a24);
+      color: #3a1d00;
+      font-size: 0.74rem;
+      font-weight: 700;
+      line-height: 1.15;
+      text-align: center;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      box-shadow: 0 0 34px 8px rgba(255, 180, 58, 0.55);
+      animation: sway 3.6s ease-in-out infinite alternate;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(calc(-1 * var(--rise)));
+      }
+    }
+
+    @keyframes sway {
+      from {
+        transform: rotate(-4deg);
+      }
+
+      to {
+        transform: rotate(4deg);
+      }
+    }
+
+    .lantern-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .lantern-form .field {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    /* =====================================================================
+   14. TEST (QUIZ)
+   ===================================================================== */
+    .quiz {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: clamp(1.3rem, 4vw, 2.6rem);
+      box-shadow: var(--shadow);
+      min-height: 380px;
+    }
+
+    .quiz .screen {
+      display: none;
+    }
+
+    .quiz .screen.show {
+      display: block;
+      animation: bump 0.4s ease;
+    }
+
+    .hud {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hud b {
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bar {
+      height: 8px;
+      border-radius: 8px;
+      background: var(--line);
+      overflow: hidden;
+      margin-bottom: 1.4rem;
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      width: 100%;
+      transform-origin: 0 50%;
+      background: linear-gradient(90deg, #0099b5, #1eb53a);
+      transition: transform 0.12s linear;
+    }
+
+    .bar.warn i {
+      background: linear-gradient(90deg, #ff9d2e, #ff4d5e);
+    }
+
+    .q-text {
+      font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      font-family: var(--font-display);
+      line-height: 1.3;
+    }
+
+    .opts {
+      display: grid;
+      gap: 0.7rem;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .opt {
+      text-align: left;
+      padding: 0.95rem 1.1rem;
+      border-radius: 14px;
+      border: 2px solid var(--line);
+      background: var(--surface2);
+      cursor: pointer;
+      font-weight: 500;
+      transition: transform 0.15s, border-color 0.2s, background 0.2s;
+    }
+
+    .opt:hover:not([disabled]) {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+
+    .opt.right {
+      border-color: var(--green);
+      background: color-mix(in srgb, var(--green) 20%, var(--surface));
+    }
+
+    .opt.wrong {
+      border-color: var(--red);
+      background: color-mix(in srgb, var(--red) 18%, var(--surface));
+      animation: shake 0.4s;
+    }
+
+    .opt.gone {
+      opacity: 0.25;
+      text-decoration: line-through;
+    }
+
+    .opt[disabled] {
+      cursor: default;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-6px);
+      }
+
+      75% {
+        transform: translateX(6px);
+      }
+    }
+
+    .explain {
+      margin-top: 1.2rem;
+      padding: 1rem 1.2rem;
+      border-radius: 14px;
+      background: var(--surface2);
+      border: 1px dashed var(--line);
+      display: none;
+    }
+
+    .explain.show {
+      display: block;
+    }
+
+    .quiz-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+
+    .result-title {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .ring {
+      width: 150px;
+      height: 150px;
+      margin: 1rem 0;
+    }
+
+    .ring circle {
+      fill: none;
+      stroke-width: 12;
+    }
+
+    .ring .bg {
+      stroke: var(--line);
+    }
+
+    .ring .fg {
+      stroke: var(--green);
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      transition: stroke-dashoffset 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .ring text {
+      fill: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 30px;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+
+    .review {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .review li {
+      padding: 0.6rem 0.9rem;
+      border-radius: 12px;
+      background: var(--surface2);
+      border-left: 5px solid var(--line);
+      font-size: 0.95rem;
+    }
+
+    .review li.ok {
+      border-left-color: var(--green);
+    }
+
+    .review li.no {
+      border-left-color: var(--red);
+    }
+
+    @media (max-width: 640px) {
+      .opts {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =====================================================================
+   15. FOOTER, TEST-KONSOLI, TOAST, CONFETTI
+   ===================================================================== */
+    footer {
+      padding: 3rem 0 4rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    footer .big {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+
+    details.selftest {
+      margin-top: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 0.9rem 1.2rem;
+    }
+
+    details.selftest summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    details.selftest ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.8rem 0 0;
+      display: grid;
+      gap: 0.3rem;
+      font-size: 0.93rem;
+    }
+
+    details.selftest li.pass::before {
+      content: "✓ ";
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    details.selftest li.fail::before {
+      content: "✗ ";
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    #confetti {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 90;
+    }
+
+    #toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px));
+      transform: translate(-50%, 140%);
+      background: var(--ink);
+      color: var(--bg);
+      padding: 0.8rem 1.3rem;
+      border-radius: 999px;
+      font-weight: 700;
+      z-index: 95;
+      max-width: calc(100% - 2rem);
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    }
+
+    #toast.show {
+      transform: translate(-50%, 0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+      }
+
+      .lantern {
+        animation: none;
+        bottom: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="progress" aria-hidden="true"></div>
+  <div class="spot" aria-hidden="true"></div>
+  <div id="stars" aria-hidden="true"></div>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#bosh" aria-label="Vatan yagona, bosh sahifa">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="2" y="3" width="28" height="9" rx="3" fill="#0099b5" />
+          <rect x="2" y="12" width="28" height="8" fill="#ffffff" stroke="#c8d3d8" stroke-width="0.6" />
+          <rect x="2" y="20" width="28" height="9" rx="3" fill="#1eb53a" />
+          <rect x="2" y="11.3" width="28" height="1.2" fill="#ce1126" />
+          <rect x="2" y="19.5" width="28" height="1.2" fill="#ce1126" />
+        </svg>
+        <span>Vatan yagona</span>
+      </a>
+      <nav class="nav" aria-label="Bo'limlar">
+        <a href="#raqamlar">Raqamlar</a>
+        <a href="#tarix">Tarix</a>
+        <a href="#ramzlar">Ramzlar</a>
+        <a href="#hududlar">Hududlar</a>
+        <a href="#siymolar">Siymolar</a>
+        <a href="#naqsh">Naqsh</a>
+        <a href="#fonus">Fonus</a>
+        <a href="#test">Test</a>
+      </nav>
+      <div class="tools">
+        <button class="icon-btn" id="sndBtn" aria-pressed="true" aria-label="Ovoz">
+          <svg class="snd-on" viewBox="0 0 24 24">
+            <path d="M11 5 6 9H3v6h3l5 4z" />
+            <path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" />
+          </svg>
+          <svg class="snd-off" viewBox="0 0 24 24">
+            <path d="M11 5 6 9H3v6h3l5 4z" />
+            <path d="m16 9 5 6M21 9l-5 6" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="themeBtn" aria-label="Tun va kunduz rejimini almashtirish">
+          <svg class="ico-moon" viewBox="0 0 24 24">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+          </svg>
+          <svg class="ico-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4.2" />
+            <path
+              d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="bosh">
+      <h1 class="sr-only">Vatan yagona</h1>
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="wrap hero-copy">
+        <p class="lead" id="heroLead">Bir bayroq, bir tarix, bir yurak. Zarralarni sichqoncha yoki barmoq bilan suring.
+        </p>
+        <div class="row">
+          <a class="btn primary" href="#tarix">Sayohatni boshlash</a>
+          <a class="btn" href="#test">Bilimni sinash</a>
+          <button class="btn small" id="morphBtn" type="button">Shaklni almashtirish</button>
+          <span class="shape-name" id="shapeName"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RAQAMLAR ============ -->
+    <section id="raqamlar">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Yurtimiz raqamlarda</h2>
+          <p>Kengliklar, odamlar va tarix — Vatanni tashkil etgan kattaliklar.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><b data-count="448978" data-fmt="1">0</b><span>kvadrat kilometr maydon</span></div>
+          <div class="stat"><b data-count="36" data-suffix=" mln+">0</b><span>aholi</span></div>
+          <div class="stat"><b data-count="12">0</b><span>viloyat, 1 respublika, 1 poytaxt</span></div>
+          <div class="stat"><b data-count="3" data-suffix=" shahar">0</b><span>Buyuk Ipak yo'lining durdonalari</span>
+          </div>
+          <div class="clock" id="clockBox">
+            <div>
+              <p>Mustaqillikning</p>
+              <div class="days" id="clkDays">0</div>
+              <p id="clkYears" style="margin:0"></p>
+            </div>
+            <div class="parts" aria-live="off">
+              <div><b id="clkH">00</b><small>soat</small></div>
+              <div><b id="clkM">00</b><small>daqiqa</small></div>
+              <div><b id="clkS">00</b><small>soniya</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TARIX ============ -->
+    <section id="tarix">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Ming yillik yo'l</h2>
+          <p>Sahifani pastga aylantiring: chiziq tarix bo'ylab o'sib boradi.</p>
+        </div>
+        <ol class="tl" id="tlList"></ol>
+      </div>
+    </section>
+
+    <!-- ============ RAMZLAR ============ -->
+    <section id="ramzlar">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Davlat ramzlari</h2>
+          <p>Bayroq shamolda tebranmoqda. Shamol kuchini o'zingiz belgilang, kartalarni bosib aylantiring.</p>
+        </div>
+        <div class="symbols">
+          <div class="flag-box">
+            <div class="pole" aria-hidden="true"></div>
+            <svg id="flagSvg" viewBox="0 0 300 160" role="img" aria-label="O'zbekiston davlat bayrog'i">
+              <defs>
+                <filter id="waveF" x="-5%" y="-10%" width="110%" height="120%">
+                  <feTurbulence id="waveT" type="fractalNoise" baseFrequency="0.012 0.035" numOctaves="1" seed="3"
+                    result="n" />
+                  <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G" />
+                </filter>
+                <linearGradient id="fold" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="0" stop-color="#000" stop-opacity="0.14" />
+                  <stop offset="0.18" stop-color="#fff" stop-opacity="0.12" />
+                  <stop offset="0.36" stop-color="#000" stop-opacity="0.12" />
+                  <stop offset="0.55" stop-color="#fff" stop-opacity="0.12" />
+                  <stop offset="0.75" stop-color="#000" stop-opacity="0.12" />
+                  <stop offset="1" stop-color="#fff" stop-opacity="0.1" />
+                </linearGradient>
+                <mask id="moonMask">
+                  <rect width="300" height="160" fill="#000" />
+                  <circle cx="38" cy="25" r="14" fill="#fff" />
+                  <circle cx="43" cy="22.5" r="12" fill="#000" />
+                </mask>
+              </defs>
+              <g filter="url(#waveF)">
+                <rect x="6" y="8" width="288" height="144" fill="#ffffff" />
+                <rect x="6" y="8" width="288" height="46" fill="#0099b5" />
+                <rect x="6" y="54" width="288" height="3" fill="#ce1126" />
+                <rect x="6" y="105" width="288" height="3" fill="#ce1126" />
+                <rect x="6" y="108" width="288" height="44" fill="#1eb53a" />
+                <rect x="6" y="8" width="288" height="144" fill="url(#fold)" />
+                <g mask="url(#moonMask)">
+                  <rect x="6" y="8" width="60" height="40" fill="#ffffff" />
+                </g>
+                <g id="flagStars" fill="#ffffff"></g>
+              </g>
+            </svg>
+            <div class="ctl">
+              <label for="windRange">Shamol</label>
+              <input type="range" id="windRange" min="0" max="100" value="45">
+              <output id="windOut">45</output>
+            </div>
+          </div>
+          <div class="flips" id="flipList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HUDUDLAR ============ -->
+    <section id="hududlar">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Hududlar xaritasi</h2>
+          <p>Bu — shartli xarita: har bir katak viloyatning taxminiy joylashuvini bildiradi. Birini tanlang.</p>
+        </div>
+        <div class="map-tools">
+          <input class="field" id="regSearch" type="search" placeholder="Viloyat nomini yozing"
+            aria-label="Viloyatni qidirish">
+          <button class="btn small" id="regRandom" type="button">Tasodifiy viloyat</button>
+        </div>
+        <div class="map-scroll">
+          <div class="tilemap" id="tileMap"></div>
+        </div>
+        <div class="region-card" id="regionCard" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============ SIYMOLAR ============ -->
+    <section id="siymolar">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Dunyoga nom taratgan allomalar</h2>
+          <p>Kartalar ustida sichqonchani yurgizing — ular egilib, yorug'lik izingizdan boradi.</p>
+        </div>
+        <div class="people" id="peopleList"></div>
+      </div>
+    </section>
+
+    <!-- ============ NAQSH ============ -->
+    <section id="naqsh">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Naqsh ustaxonasi</h2>
+          <p>Kanvasda chizing: har bir chiziq markaz atrofida takrorlanadi va o'z ko'zgusini yaratadi. Ikat va girih
+            naqshlari shunday tug'iladi.</p>
+        </div>
+        <div class="workshop">
+          <div class="canvas-frame"><canvas id="patCanvas" aria-label="Naqsh chizish kanvasi"></canvas></div>
+          <div class="panel">
+            <label>Takror soni: <output id="foldOut">8</output>
+              <input type="range" id="foldRange" min="3" max="16" value="8">
+            </label>
+            <label>Qalam qalinligi: <output id="brushOut">3</output>
+              <input type="range" id="brushRange" min="1" max="12" value="3">
+            </label>
+            <div>
+              <div style="color:var(--muted);font-size:.95rem;margin-bottom:.4rem">Rang</div>
+              <div class="swatches" id="swatchList"></div>
+            </div>
+            <label class="check"><input type="checkbox" id="mirrorChk" checked> Ko'zgu simmetriyasi</label>
+            <div class="row">
+              <button class="btn small primary" id="patAuto" type="button">Naqshni o'zi chizsin</button>
+              <button class="btn small" id="patUndo" type="button">Orqaga</button>
+              <button class="btn small" id="patClear" type="button">Tozalash</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FONUS ============ -->
+    <section id="fonus">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Vatanga tilak fonusi</h2>
+          <p>Qisqa tilak yozing va fonusni osmonga qo'yib yuboring. Fonuslar brauzeringizda saqlanadi.</p>
+        </div>
+        <div class="sky" id="sky">
+          <div class="hills" aria-hidden="true"></div>
+        </div>
+        <div class="lantern-form">
+          <input class="field" id="wishInput" maxlength="36" placeholder="Masalan: Tinch osmon"
+            aria-label="Tilak matni">
+          <button class="btn primary" id="wishBtn" type="button">Fonusni uchirish</button>
+          <button class="btn" id="wishClear" type="button">Hammasini olib tashlash</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TEST ============ -->
+    <section id="test">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Vatan bilimi testi</h2>
+          <p>Sakkizta tasodifiy savol, har biriga 15 soniya. Tez va ketma-ket to'g'ri javob ko'proq ball beradi.</p>
+        </div>
+        <div class="quiz" id="quiz">
+          <div class="screen show" id="scrStart">
+            <h3 class="result-title">Tayyormisiz?</h3>
+            <p id="bestLine">Hali natija yo'q. Birinchi bo'lib rekord o'rnating.</p>
+            <p style="color:var(--muted)">Bitta marta 50/50 yordamidan foydalanish mumkin.</p>
+            <div class="quiz-actions"><button class="btn primary" id="qStart" type="button">Testni boshlash</button>
+            </div>
+          </div>
+          <div class="screen" id="scrPlay">
+            <div class="hud">
+              <span>Savol <b id="hudQ">1/8</b></span>
+              <span>Ball <b id="hudScore">0</b></span>
+              <span>Ketma-ketlik <b id="hudStreak">0</b></span>
+              <span>Vaqt <b id="hudTime">15</b></span>
+            </div>
+            <div class="bar" id="timeBar"><i id="timeFill"></i></div>
+            <div class="q-text" id="qText"></div>
+            <div class="opts" id="qOpts"></div>
+            <div class="explain" id="qExplain"></div>
+            <div class="quiz-actions">
+              <button class="btn small" id="qHint" type="button">50/50 yordam</button>
+              <button class="btn small primary" id="qNext" type="button" disabled>Keyingi savol</button>
+            </div>
+          </div>
+          <div class="screen" id="scrEnd">
+            <h3 class="result-title" id="endTitle"></h3>
+            <svg class="ring" viewBox="0 0 120 120" role="img" aria-label="Natija doirasi">
+              <circle class="bg" cx="60" cy="60" r="50" />
+              <circle class="fg" id="ringFg" cx="60" cy="60" r="50" stroke-dasharray="314.16"
+                stroke-dashoffset="314.16" />
+              <text x="60" y="60" id="ringTxt">0%</text>
+            </svg>
+            <p id="endLine"></p>
+            <ul class="review" id="reviewList"></ul>
+            <div class="quiz-actions"><button class="btn primary" id="qAgain" type="button">Qayta urinish</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      /* =====================================================================
+         MODUL 1: Utils — yordamchi sof funksiyalar (testlanadigan)
+         ===================================================================== */
+      const $ = (sel, root = document) => root.querySelector(sel);
+      const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+      const Utils = {
+        clamp(v, min, max) { return Math.min(max, Math.max(min, v)); },
+        lerp(a, b, t) { return a + (b - a) * t; },
+        rand(min, max) { return min + Math.random() * (max - min); },
+        pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; },
+        pad2(n) { return String(n).padStart(2, '0'); },
+
+        fmt(n) {
+          return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        },
+
+        shuffle(arr) {
+          const a = arr.slice();
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        },
+
+        elapsed(from, now = new Date()) {
+          const ms = Math.max(0, now.getTime() - from.getTime());
+          const totalSec = Math.floor(ms / 1000);
+          return {
+            days: Math.floor(totalSec / 86400),
+            hours: Math.floor((totalSec % 86400) / 3600),
+            minutes: Math.floor((totalSec % 3600) / 60),
+            seconds: totalSec % 60,
+          };
+        },
+
+        yearsSince(year, now = new Date()) { return now.getFullYear() - year; },
+
+        debounce(fn, ms) {
+          let t;
+          return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+        },
+
+        reducedMotion() {
+          return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        },
+
+        el(tag, attrs = {}, ...kids) {
+          const n = document.createElement(tag);
+          for (const [k, v] of Object.entries(attrs)) {
+            if (v === false || v == null) continue;
+            if (k === 'class') n.className = v;
+            else if (k === 'text') n.textContent = v;
+            else if (k.startsWith('on') && typeof v === 'function') n.addEventListener(k.slice(2), v);
+            else n.setAttribute(k, v);
+          }
+          for (const kid of kids.flat()) if (kid != null) n.append(kid);
+          return n;
+        },
+      };
+
+      /* Geometriya: naqsh simmetriyasi uchun sof matematika */
+      const Geo = {
+        rotate(x, y, a) {
+          const c = Math.cos(a), s = Math.sin(a);
+          return { x: x * c - y * s, y: x * s + y * c };
+        },
+        reflectY(x, y) { return { x, y: -y }; },
+        starPoints(cx, cy, outer, inner, n = 5) {
+          const pts = [];
+          for (let i = 0; i < n * 2; i++) {
+            const r = i % 2 === 0 ? outer : inner;
+            const a = -Math.PI / 2 + (i * Math.PI) / n;
+            pts.push((cx + r * Math.cos(a)).toFixed(2) + ',' + (cy + r * Math.sin(a)).toFixed(2));
+          }
+          return pts.join(' ');
+        },
+      };
+
+      /* Ball hisoblash — sof funksiya */
+      const Scoring = {
+        points(correct, secondsLeft, streakBefore) {
+          if (!correct) return 0;
+          return 100 + Math.round(Math.max(0, secondsLeft) * 4) + Math.min(streakBefore, 5) * 10;
+        },
+        rank(correct, total) {
+          const r = total === 0 ? 0 : correct / total;
+          if (r >= 0.9) return 'Vatan farzandi';
+          if (r >= 0.7) return 'Chin vatanparvar';
+          if (r >= 0.5) return 'Izlanuvchi';
+          return 'Yangi sayohatchi';
+        },
+      };
+
+      /* =====================================================================
+         MODUL 2: Store — localStorage uchun xavfsiz qobiq
+         ===================================================================== */
+      const Store = {
+        get(key, fallback) {
+          try {
+            const raw = localStorage.getItem('vy:' + key);
+            return raw == null ? fallback : JSON.parse(raw);
+          } catch (e) { return fallback; }
+        },
+        set(key, value) {
+          try { localStorage.setItem('vy:' + key, JSON.stringify(value)); return true; }
+          catch (e) { return false; }
+        },
+        remove(key) {
+          try { localStorage.removeItem('vy:' + key); } catch (e) { /* storage yo'q */ }
+        },
+      };
+
+      /* =====================================================================
+         MODUL 3: Toast va Sound
+         ===================================================================== */
+      const Toast = {
+        timer: null,
+        show(msg) {
+          const t = $('#toast');
+          t.textContent = msg;
+          t.classList.add('show');
+          clearTimeout(Toast.timer);
+          Toast.timer = setTimeout(() => t.classList.remove('show'), 2200);
+        },
+      };
+
+      const Sound = {
+        ctx: null,
+        on: Store.get('sound', true),
+        ensure() {
+          if (!Sound.ctx) {
+            const AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return null;
+            Sound.ctx = new AC();
+          }
+          if (Sound.ctx.state === 'suspended') Sound.ctx.resume();
+          return Sound.ctx;
+        },
+        tone(freq, start, dur, type = 'sine', vol = 0.08) {
+          const ctx = Sound.ensure();
+          if (!ctx) return;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = type;
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0.0001, ctx.currentTime + start);
+          gain.gain.exponentialRampToValueAtTime(vol, ctx.currentTime + start + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + start + dur);
+          osc.connect(gain).connect(ctx.destination);
+          osc.start(ctx.currentTime + start);
+          osc.stop(ctx.currentTime + start + dur + 0.05);
+        },
+        play(name) {
+          if (!Sound.on) return;
+          const notes = {
+            ok: [[660, 0, 0.12], [880, 0.1, 0.18]],
+            bad: [[220, 0, 0.18, 'sawtooth'], [165, 0.12, 0.22, 'sawtooth']],
+            tick: [[1200, 0, 0.04, 'square']],
+            pop: [[520, 0, 0.08, 'triangle']],
+            win: [[523, 0, 0.14], [659, 0.12, 0.14], [784, 0.24, 0.14], [1047, 0.36, 0.3]],
+            swap: [[440, 0, 0.1, 'triangle'], [330, 0.08, 0.14, 'triangle']],
+          };
+          (notes[name] || []).forEach(([f, s, d, t]) => Sound.tone(f, s, d, t));
+        },
+        init() {
+          const btn = $('#sndBtn');
+          btn.setAttribute('aria-pressed', String(Sound.on));
+          btn.addEventListener('click', () => {
+            Sound.on = !Sound.on;
+            Store.set('sound', Sound.on);
+            btn.setAttribute('aria-pressed', String(Sound.on));
+            Toast.show(Sound.on ? 'Ovoz yoqildi' : 'Ovoz o\'chirildi');
+            Sound.play('pop');
+          });
+        },
+      };
+
+      /* =====================================================================
+         MODUL 4: Theme — tun/kunduz + View Transition doira effekti
+         ===================================================================== */
+      const Theme = {
+        listeners: [],
+        current() { return document.documentElement.getAttribute('data-theme') || 'light'; },
+        systemPrefersDark() {
+          return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        },
+        apply(mode) {
+          document.documentElement.setAttribute('data-theme', mode);
+          Theme.listeners.forEach((fn) => fn(mode));
+        },
+        onChange(fn) { Theme.listeners.push(fn); },
+        toggle(originX, originY) {
+          const next = Theme.current() === 'dark' ? 'light' : 'dark';
+          Store.set('theme', next);
+          Sound.play('swap');
+          const canDo = typeof document.startViewTransition === 'function' && !Utils.reducedMotion();
+          if (!canDo) { Theme.apply(next); return; }
+          const radius = Math.hypot(Math.max(originX, innerWidth - originX), Math.max(originY, innerHeight - originY));
+          const vt = document.startViewTransition(() => Theme.apply(next));
+          vt.ready.then(() => {
+            document.documentElement.animate(
+              { clipPath: [`circle(0px at ${originX}px ${originY}px)`, `circle(${radius}px at ${originX}px ${originY}px)`] },
+              { duration: 750, easing: 'cubic-bezier(0.3, 0.7, 0.2, 1)', pseudoElement: '::view-transition-new(root)' }
+            );
+          }).catch(() => { /* animatsiya bekor qilindi */ });
+        },
+        init() {
+          const saved = Store.get('theme', null);
+          Theme.apply(saved || (Theme.systemPrefersDark() ? 'dark' : 'light'));
+          $('#themeBtn').addEventListener('click', (e) => {
+            const r = e.currentTarget.getBoundingClientRect();
+            Theme.toggle(r.left + r.width / 2, r.top + r.height / 2);
+          });
+        },
+        colors() {
+          const cs = getComputedStyle(document.documentElement);
+          return [cs.getPropertyValue('--p1').trim(), cs.getPropertyValue('--p2').trim(), cs.getPropertyValue('--p3').trim()];
+        },
+      };
+
+      /* =====================================================================
+         MODUL 5: Ambient — progress, spotlight, yulduzlar, nav
+         ===================================================================== */
+      const Ambient = {
+        init() {
+          const bar = $('#progress');
+          const onScroll = () => {
+            const h = document.documentElement.scrollHeight - innerHeight;
+            bar.style.transform = `scaleX(${h > 0 ? Utils.clamp(scrollY / h, 0, 1) : 0})`;
+          };
+          addEventListener('scroll', onScroll, { passive: true });
+          onScroll();
+
+          const spot = $('.spot');
+          addEventListener('pointermove', (e) => {
+            spot.style.setProperty('--mx', e.clientX + 'px');
+            spot.style.setProperty('--my', e.clientY + 'px');
+          }, { passive: true });
+
+          const sky = $('#stars');
+          const frag = document.createDocumentFragment();
+          for (let i = 0; i < 110; i++) {
+            const s = Utils.rand(1, 2.6);
+            const star = Utils.el('i', { class: 'star' });
+            star.style.cssText = `left:${Utils.rand(0, 100)}%;top:${Utils.rand(0, 100)}%;width:${s}px;height:${s}px;--d:${Utils.rand(2, 5)}s;--delay:${Utils.rand(0, 4)}s`;
+            frag.append(star);
+          }
+          sky.append(frag);
+
+          setInterval(() => {
+            if (Theme.current() !== 'dark' || document.hidden || Utils.reducedMotion()) return;
+            const sh = Utils.el('i', { class: 'shoot' });
+            sh.style.left = Utils.rand(40, 95) + '%';
+            sh.style.top = Utils.rand(2, 35) + '%';
+            sky.append(sh);
+            sh.addEventListener('animationend', () => sh.remove());
+          }, 6500);
+
+          const links = $$('.nav a');
+          const map = new Map(links.map((a) => [a.getAttribute('href').slice(1), a]));
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((en) => {
+              if (en.isIntersecting) {
+                links.forEach((l) => l.classList.remove('active'));
+                const a = map.get(en.target.id);
+                if (a) a.classList.add('active');
+              }
+            });
+          }, { rootMargin: '-45% 0px -50% 0px' });
+          map.forEach((_, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+        },
+      };
+
+      /* =====================================================================
+         MODUL 6: Confetti
+         ===================================================================== */
+      const Confetti = (() => {
+        const cv = $('#confetti');
+        const ctx = cv.getContext('2d');
+        let bits = [];
+        let running = false;
+        const COLORS = ['#0099b5', '#ffffff', '#1eb53a', '#ce1126', '#f4c95d'];
+
+        function fit() {
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          cv.width = innerWidth * dpr;
+          cv.height = innerHeight * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        function burst(x = innerWidth / 2, y = innerHeight / 3, n = 140) {
+          if (Utils.reducedMotion()) return;
+          fit();
+          for (let i = 0; i < n; i++) {
+            const a = Utils.rand(0, Math.PI * 2);
+            const sp = Utils.rand(3, 12);
+            bits.push({
+              x, y,
+              vx: Math.cos(a) * sp,
+              vy: Math.sin(a) * sp - 5,
+              w: Utils.rand(5, 10),
+              h: Utils.rand(3, 6),
+              rot: Utils.rand(0, 6.28),
+              vr: Utils.rand(-0.3, 0.3),
+              c: Utils.pick(COLORS),
+              life: Utils.rand(70, 130),
+            });
+          }
+          if (!running) { running = true; requestAnimationFrame(step); }
+        }
+
+        function step() {
+          ctx.clearRect(0, 0, innerWidth, innerHeight);
+          bits = bits.filter((b) => b.life > 0 && b.y < innerHeight + 30);
+          for (const b of bits) {
+            b.vy += 0.28;
+            b.vx *= 0.99;
+            b.x += b.vx;
+            b.y += b.vy;
+            b.rot += b.vr;
+            b.life--;
+            ctx.save();
+            ctx.translate(b.x, b.y);
+            ctx.rotate(b.rot);
+            ctx.globalAlpha = Utils.clamp(b.life / 40, 0, 1);
+            ctx.fillStyle = b.c;
+            ctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h);
+            ctx.restore();
+          }
+          if (bits.length) requestAnimationFrame(step);
+          else { running = false; ctx.clearRect(0, 0, innerWidth, innerHeight); }
+        }
+
+        return { burst };
+      })();
+
+      /* =====================================================================
+         MODUL 7: Hero — zarralar so'z va shakl hosil qiladi
+         ===================================================================== */
+      const Hero = (() => {
+        const canvas = $('#heroCanvas');
+        const ctx = canvas.getContext('2d');
+        const label = $('#shapeName');
+        let W = 0, H = 0, dpr = 1;
+        let parts = [];
+        let colors = ['#0a7f90', '#1b9e34', '#c8902a'];
+        let shapeIdx = 0;
+        let visible = true;
+        let autoTimer = null;
+        const mouse = { x: -9999, y: -9999 };
+
+        function drawWord(c, w, h, txt) {
+          c.fillStyle = '#000';
+          c.textAlign = 'center';
+          c.textBaseline = 'middle';
+          c.font = '900 100px Unbounded, "Arial Black", sans-serif';
+          const m = c.measureText(txt).width || 1;
+          const size = Math.min((100 * w * 0.86) / m, h * 0.3);
+          c.font = `900 ${size}px Unbounded, "Arial Black", sans-serif`;
+          c.fillText(txt, w / 2, h * 0.42);
+        }
+
+        function drawStar(c, cx, cy, r) {
+          c.beginPath();
+          for (let i = 0; i < 10; i++) {
+            const rr = i % 2 === 0 ? r : r * 0.42;
+            const a = -Math.PI / 2 + (i * Math.PI) / 5;
+            const px = cx + rr * Math.cos(a);
+            const py = cy + rr * Math.sin(a);
+            if (i === 0) c.moveTo(px, py); else c.lineTo(px, py);
+          }
+          c.closePath();
+          c.fill();
+        }
+
+        function drawMoonStars(c, w, h) {
+          const cy = h * 0.42;
+          const R = Math.min(w * 0.24, h * 0.24);
+          const cx = w / 2 - R * 0.95;
+          c.fillStyle = '#000';
+          c.beginPath();
+          c.arc(cx, cy, R, 0, Math.PI * 2);
+          c.fill();
+          c.globalCompositeOperation = 'destination-out';
+          c.beginPath();
+          c.arc(cx + R * 0.38, cy - R * 0.06, R * 0.82, 0, Math.PI * 2);
+          c.fill();
+          c.globalCompositeOperation = 'source-over';
+          const rows = [3, 4, 5];
+          const sp = R * 0.5;
+          const x0 = w / 2 + R * 0.95;
+          rows.forEach((n, k) => {
+            for (let i = 0; i < n; i++) {
+              drawStar(c, x0 + (i - (n - 1) / 2) * sp, cy + (k - 1) * sp * 1.05, R * 0.19);
+            }
+          });
+        }
+
+        const SHAPES = [
+          { name: 'Vatan', draw: (c, w, h) => drawWord(c, w, h, 'VATAN') },
+          { name: 'Yagona', draw: (c, w, h) => drawWord(c, w, h, 'YAGONA') },
+          { name: 'Hilol va o\'n ikki yulduz', draw: drawMoonStars },
+          { name: 'O\'zbekiston', draw: (c, w, h) => drawWord(c, w, h, 'O\'ZBEK') },
+        ];
+
+        function sample(shape, count) {
+          const off = document.createElement('canvas');
+          off.width = Math.max(1, Math.floor(W));
+          off.height = Math.max(1, Math.floor(H));
+          const c = off.getContext('2d', { willReadFrequently: true });
+          shape.draw(c, off.width, off.height);
+          const data = c.getImageData(0, 0, off.width, off.height).data;
+          let gap = 3;
+          let pts = [];
+          for (; gap < 18; gap++) {
+            pts = [];
+            for (let y = 0; y < off.height; y += gap) {
+              for (let x = 0; x < off.width; x += gap) {
+                if (data[(y * off.width + x) * 4 + 3] > 128) pts.push({ x, y });
+              }
+            }
+            if (pts.length <= count * 1.15) break;
+          }
+          return Utils.shuffle(pts);
+        }
+
+        function assign(animate = true) {
+          const pts = sample(SHAPES[shapeIdx], parts.length);
+          if (!pts.length) return;
+          parts.forEach((p, i) => {
+            const t = pts[i % pts.length];
+            p.tx = t.x + (i >= pts.length ? Utils.rand(-3, 3) : 0);
+            p.ty = t.y + (i >= pts.length ? Utils.rand(-3, 3) : 0);
+            if (animate) {
+              p.vx += Utils.rand(-6, 6);
+              p.vy += Utils.rand(-6, 6);
+            } else {
+              p.x = p.tx; p.y = p.ty;
+            }
+          });
+          label.textContent = SHAPES[shapeIdx].name;
+        }
+
+        function build() {
+          const rect = canvas.getBoundingClientRect();
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          W = rect.width; H = rect.height;
+          canvas.width = W * dpr;
+          canvas.height = H * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          const count = W < 600 ? 900 : 1700;
+          colors = Theme.colors();
+          parts = Array.from({ length: count }, (_, i) => ({
+            x: Utils.rand(0, W), y: Utils.rand(0, H),
+            tx: W / 2, ty: H / 2, vx: 0, vy: 0,
+            r: Utils.rand(1.1, 2.4),
+            c: i % 3,
+            seed: Utils.rand(0, 100),
+          }));
+          assign(false);
+        }
+
+        function frame(time) {
+          requestAnimationFrame(frame);
+          if (!visible || document.hidden) return;
+          ctx.clearRect(0, 0, W, H);
+          const t = time / 1000;
+          const still = Utils.reducedMotion();
+          for (const p of parts) {
+            if (!still) {
+              const dx = p.tx - p.x;
+              const dy = p.ty - p.y;
+              p.vx += dx * 0.032 + Math.sin(t * 1.4 + p.seed) * 0.02;
+              p.vy += dy * 0.032 + Math.cos(t * 1.2 + p.seed) * 0.02;
+              const mx = p.x - mouse.x;
+              const my = p.y - mouse.y;
+              const d2 = mx * mx + my * my;
+              if (d2 < 9000) {
+                const d = Math.sqrt(d2) || 1;
+                const f = (1 - d / 95) * 2.6;
+                p.vx += (mx / d) * f;
+                p.vy += (my / d) * f;
+              }
+              p.vx *= 0.87;
+              p.vy *= 0.87;
+              p.x += p.vx;
+              p.y += p.vy;
+            }
+            ctx.fillStyle = colors[p.c];
+            ctx.fillRect(p.x, p.y, p.r, p.r);
+          }
+        }
+
+        function next() {
+          shapeIdx = (shapeIdx + 1) % SHAPES.length;
+          assign(true);
+          Sound.play('pop');
+        }
+
+        function schedule() {
+          clearInterval(autoTimer);
+          if (Utils.reducedMotion()) return;
+          autoTimer = setInterval(() => { if (visible && !document.hidden) { shapeIdx = (shapeIdx + 1) % SHAPES.length; assign(true); } }, 6500);
+        }
+
+        function init() {
+          const rebuild = () => { build(); };
+          rebuild();
+          if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => assign(false));
+          addEventListener('resize', Utils.debounce(rebuild, 250));
+          canvas.addEventListener('pointermove', (e) => {
+            const r = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - r.left;
+            mouse.y = e.clientY - r.top;
+          });
+          canvas.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+          canvas.addEventListener('pointerdown', (e) => {
+            const r = canvas.getBoundingClientRect();
+            const cx = e.clientX - r.left, cy = e.clientY - r.top;
+            for (const p of parts) {
+              const dx = p.x - cx, dy = p.y - cy;
+              const d = Math.hypot(dx, dy) || 1;
+              if (d < 220) { p.vx += (dx / d) * 14 * (1 - d / 220); p.vy += (dy / d) * 14 * (1 - d / 220); }
+            }
+          });
+          new IntersectionObserver((en) => { visible = en[0].isIntersecting; }).observe(canvas);
+          Theme.onChange(() => { colors = Theme.colors(); });
+          $('#morphBtn').addEventListener('click', () => { next(); schedule(); });
+          schedule();
+          requestAnimationFrame(frame);
+          $('#heroLead').textContent =
+            `Bir bayroq, bir tarix, bir yurak. Mustaqillikning ${Utils.yearsSince(1991)} yili. Zarralarni sichqoncha yoki barmoq bilan suring.`;
+        }
+
+        return { init };
+      })();
+
+      /* =====================================================================
+         MODUL 8: Stats — sanagich va jonli soat
+         ===================================================================== */
+      const Stats = {
+        INDEPENDENCE: new Date(1991, 8, 1, 0, 0, 0),
+        animateCount(el) {
+          const target = Number(el.dataset.count);
+          const suffix = el.dataset.suffix || '';
+          const fmt = el.dataset.fmt ? Utils.fmt : (n) => String(Math.round(n));
+          if (Utils.reducedMotion()) { el.textContent = fmt(target) + suffix; return; }
+          const t0 = performance.now();
+          const dur = 1600;
+          const tick = (now) => {
+            const p = Utils.clamp((now - t0) / dur, 0, 1);
+            const eased = 1 - Math.pow(1 - p, 4);
+            el.textContent = fmt(target * eased) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        },
+        updateClock() {
+          const e = Utils.elapsed(Stats.INDEPENDENCE);
+          $('#clkDays').textContent = Utils.fmt(e.days);
+          $('#clkH').textContent = Utils.pad2(e.hours);
+          $('#clkM').textContent = Utils.pad2(e.minutes);
+          $('#clkS').textContent = Utils.pad2(e.seconds);
+        },
+        init() {
+          const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach((en) => {
+              if (en.isIntersecting) { Stats.animateCount(en.target); obs.unobserve(en.target); }
+            });
+          }, { threshold: 0.6 });
+          $$('[data-count]').forEach((el) => io.observe(el));
+          $('#clkYears').textContent = `kuni — ${Utils.yearsSince(1991)} yoshli, hali yosh va kuchli davlat.`;
+          Stats.updateClock();
+          setInterval(Stats.updateClock, 1000);
+        },
+      };
+
+      /* =====================================================================
+         MODUL 9: Timeline
+         ===================================================================== */
+      const TIMELINE = [
+        { y: 'IX–XII asrlar', t: 'Ilm gullagan davr', d: 'Al-Xorazmiy, Beruniy va Ibn Sino kabi allomalar Movarounnahrda dunyo ilmini boyitdi.' },
+        { y: '1370', t: 'Temuriylar davlati', d: 'Amir Temur Samarqandni poytaxt qilib, katta davlatni birlashtirdi.' },
+        { y: '1420-yillar', t: 'Ulug\'bek rasadxonasi', d: 'Samarqandda qurilgan rasadxonada yulduzlar jadvali tuzildi.' },
+        { y: 'XV asr', t: 'Navoiy va ona tili', d: 'Alisher Navoiy asarlari turkiy tilning adabiy kuchini butun dunyoga ko\'rsatdi.' },
+        { y: '1526', t: 'Boburiylar saltanati', d: 'Zahiriddin Bobur Hindistonda Boburiylar davlatiga asos soldi.' },
+        { y: '1924', t: 'O\'zbekiston SSR', d: 'Hozirgi O\'zbekiston hududining zamonaviy chegaralari shakllana boshlagan yil.' },
+        { y: '1991-yil 1-sentabr', t: 'Mustaqillik', d: 'O\'zbekiston o\'z taqdirini o\'zi belgilaydigan suveren davlat deb e\'lon qilindi.' },
+        { y: '1992-yil 8-dekabr', t: 'Konstitutsiya', d: 'Mustaqil davlatning asosiy qonuni qabul qilindi. Bu kun har yili bayram qilinadi.' },
+        { y: '1994-yil 1-iyul', t: 'Milliy valyuta', d: 'Muomalaga o\'zbek so\'mi kiritildi.' },
+      ];
+
+      const Timeline = {
+        init() {
+          const ol = $('#tlList');
+          TIMELINE.forEach((it) => {
+            ol.append(Utils.el('li', {},
+              Utils.el('span', { class: 'dot' }),
+              Utils.el('div', { class: 'year', text: it.y }),
+              Utils.el('h3', { text: it.t }),
+              Utils.el('p', { text: it.d })
+            ));
+          });
+          const items = $$('li', ol);
+          const update = () => {
+            const r = ol.getBoundingClientRect();
+            const mid = innerHeight * 0.55;
+            const filled = Utils.clamp(mid - r.top, 0, r.height);
+            ol.style.setProperty('--fill', filled + 'px');
+            items.forEach((li) => {
+              const lr = li.getBoundingClientRect();
+              li.classList.toggle('lit', lr.top + 14 < mid);
+            });
+          };
+          addEventListener('scroll', update, { passive: true });
+          addEventListener('resize', update);
+          update();
+        },
+      };
+
+      /* =====================================================================
+         MODUL 10: Flag — to'lqinli SVG bayroq
+         ===================================================================== */
+      const Flag = {
+        wind: 45,
+        init() {
+          const g = $('#flagStars');
+          const rows = [3, 4, 5];
+          const x0 = 100;
+          const sp = 12.5;
+          rows.forEach((n, k) => {
+            for (let i = 0; i < n; i++) {
+              const cx = x0 + (i - (n - 1) / 2) * sp;
+              const cy = 17 + k * 10.8;
+              const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+              poly.setAttribute('points', Geo.starPoints(cx, cy, 4.2, 1.8, 5));
+              g.append(poly);
+            }
+          });
+
+          const turb = $('#waveT');
+          const disp = $('#waveF feDisplacementMap');
+          const range = $('#windRange');
+          const out = $('#windOut');
+          const svg = $('#flagSvg');
+          let visible = true;
+          let last = 0;
+
+          const setWind = (v) => {
+            Flag.wind = Number(v);
+            out.textContent = v;
+            disp.setAttribute('scale', String(2 + Flag.wind * 0.16));
+          };
+          range.addEventListener('input', () => setWind(range.value));
+          setWind(range.value);
+
+          new IntersectionObserver((en) => { visible = en[0].isIntersecting; }).observe(svg);
+
+          if (Utils.reducedMotion()) { disp.setAttribute('scale', '3'); return; }
+
+          const loop = (now) => {
+            requestAnimationFrame(loop);
+            if (!visible || document.hidden || now - last < 40) return;
+            last = now;
+            const t = now / 1000;
+            const speed = 0.25 + Flag.wind / 60;
+            const fx = 0.011 + Math.sin(t * speed) * 0.003;
+            const fy = 0.032 + Math.cos(t * speed * 0.8) * 0.006;
+            turb.setAttribute('baseFrequency', `${fx.toFixed(4)} ${fy.toFixed(4)}`);
+          };
+          requestAnimationFrame(loop);
+        },
+      };
+
+      const SYMBOLS = [
+        { t: 'Davlat bayrog\'i', s: 'Bosing, o\'qing', b: 'Uch rangli yo\'l: yuqorida ko\'k, o\'rtada oq, pastda yashil. Yo\'llarni qizil ingichka chiziqlar ajratib turadi. Ko\'k yo\'lda hilol va o\'n ikkita yulduz bor. Bayroq 1991-yilning 18-noyabrida qabul qilingan.' },
+        { t: 'Davlat gerbi', s: 'Bosing, o\'qing', b: 'Gerbda qanotlarini yozgan Humo qushi, ko\'tarilayotgan quyosh, vodiy, daryolar hamda bug\'doy va paxta shoxlari tasvirlangan. U 1992-yilning 2-iyulida tasdiqlangan.' },
+        { t: 'Davlat madhiyasi', s: 'Bosing, o\'qing', b: 'Madhiya musiqasini Mutal Burhonov bastalagan, so\'zlarini shoir Abdulla Oripov yozgan. U Vatanga muhabbat va tinchlik tuyg\'usini kuylaydi.' },
+      ];
+
+      const Symbols = {
+        init() {
+          const box = $('#flipList');
+          SYMBOLS.forEach((s) => {
+            const btn = Utils.el('button', { class: 'flip', type: 'button', 'aria-pressed': 'false' },
+              Utils.el('span', { class: 'inner' },
+                Utils.el('span', { class: 'face front' }, Utils.el('h3', { text: s.t }), Utils.el('small', { text: s.s })),
+                Utils.el('span', { class: 'face back', text: s.b })
+              )
+            );
+            btn.addEventListener('click', () => {
+              const on = btn.classList.toggle('flipped');
+              btn.setAttribute('aria-pressed', String(on));
+              Sound.play('pop');
+            });
+            box.append(btn);
+          });
+        },
+      };
+
+      /* =====================================================================
+         MODUL 11: Regions — shartli xarita (tile map)
+         ===================================================================== */
+      const REGIONS = [
+        { n: 'Qoraqalpog\'iston', c: 'Nukus', f: 'Orol dengizi bo\'yidagi keng cho\'llar va Nukusdagi Savitskiy nomidagi san\'at muzeyi bilan mashhur.', pos: [1, 1, 3], h: 18 },
+        { n: 'Navoiy', c: 'Navoiy', f: 'Sarmishsoy qoyatosh suratlari va Nurota tog\'lari shu viloyatda joylashgan.', pos: [1, 4, 1], h: 40 },
+        { n: 'Jizzax', c: 'Jizzax', f: 'Zomin tog\'lari va milliy bog\'i yozgi dam olish uchun sevimli joy.', pos: [1, 5, 1], h: 95 },
+        { n: 'Sirdaryo', c: 'Guliston', f: 'Nomi Sirdaryo daryosidan olingan, qishloq xo\'jaligi rivojlangan hudud.', pos: [1, 6, 1], h: 200 },
+        { n: 'Toshkent viloyati', c: 'Nurafshon', f: 'Chorvoq suv ombori va Chimyon tog\'lari poytaxt aholisining sevimli dam olish maskani.', pos: [1, 7, 1], h: 150 },
+        { n: 'Namangan', c: 'Namangan', f: 'Chust do\'ppilari va pichoqlari hunarmandchilikda mashhur.', pos: [1, 8, 1], h: 330 },
+        { n: 'Andijon', c: 'Andijon', f: 'Zahiriddin Bobur shu yerda tug\'ilgan. Andijon Farg\'ona vodiysining sharqiy darvozasi.', pos: [1, 9, 1], h: 12 },
+        { n: 'Xorazm', c: 'Urganch', f: 'Xivadagi Ichan-Qal\'a — jahon merosi, tarixiy shahar-muzey.', pos: [2, 3, 1], h: 25 },
+        { n: 'Buxoro', c: 'Buxoro', f: 'Poyi Kalon majmuasi va ko\'p asrlik savdo gumbazlari bilan tanilgan.', pos: [2, 4, 1], h: 280 },
+        { n: 'Samarqand', c: 'Samarqand', f: 'Registon maydoni va Amir Temur maqbarasi Samarqand sharafini oshiradi.', pos: [2, 5, 1], h: 195 },
+        { n: 'Toshkent shahri', c: 'Toshkent', f: 'Mustaqil O\'zbekistonning poytaxti va eng yirik shahri. Metro va telekoʻrsatuv minorasi bilan mashhur.', pos: [2, 7, 1], h: 350 },
+        { n: 'Farg\'ona', c: 'Farg\'ona', f: 'Marg\'ilon atlas va ipak matolari butun yurtga mashhur.', pos: [2, 8, 2], h: 310 },
+        { n: 'Qashqadaryo', c: 'Qarshi', f: 'Shahrisabz — Amir Temurning tug\'ilgan shahri, Oqsaroy qoldiqlari shu yerda.', pos: [3, 4, 2], h: 60 },
+        { n: 'Surxondaryo', c: 'Termiz', f: 'Termiz qadimiy Amudaryo bo\'yida joylashgan, buddizm yodgorliklari bilan mashhur.', pos: [3, 6, 1], h: 10 },
+      ];
+
+      const Regions = {
+        selected: null,
+        tiles: new Map(),
+        select(i) {
+          const r = REGIONS[i];
+          Regions.selected = i;
+          Regions.tiles.forEach((t, k) => t.classList.toggle('sel', k === i));
+          const card = $('#regionCard');
+          card.style.setProperty('--h', r.h);
+          card.replaceChildren(
+            Utils.el('div', { class: 'badge', 'aria-hidden': 'true', text: r.n.slice(0, 1) }),
+            Utils.el('div', {},
+              Utils.el('h3', { text: r.n }),
+              Utils.el('div', { class: 'meta', text: 'Markazi: ' + r.c }),
+              Utils.el('p', { text: r.f })
+            )
+          );
+          card.classList.remove('bump');
+          void card.offsetWidth;
+          card.classList.add('bump');
+          Sound.play('pop');
+        },
+        filter(q) {
+          const s = q.trim().toLowerCase().replace(/[’'ʻ`]/g, '');
+          Regions.tiles.forEach((tile, i) => {
+            const name = REGIONS[i].n.toLowerCase().replace(/[’'ʻ`]/g, '');
+            tile.classList.toggle('dim', s !== '' && !name.includes(s));
+          });
+        },
+        init() {
+          const map = $('#tileMap');
+          REGIONS.forEach((r, i) => {
+            const [row, col, span] = r.pos;
+            const tile = Utils.el('button', { class: 'tile', type: 'button' }, Utils.el('span', { text: r.n }));
+            tile.style.cssText = `--h:${r.h};grid-row:${row};grid-column:${col} / span ${span}`;
+            tile.addEventListener('click', () => Regions.select(i));
+            Regions.tiles.set(i, tile);
+            map.append(tile);
+          });
+          $('#regSearch').addEventListener('input', (e) => Regions.filter(e.target.value));
+          $('#regRandom').addEventListener('click', () => {
+            let i;
+            do { i = Math.floor(Math.random() * REGIONS.length); } while (i === Regions.selected);
+            Regions.select(i);
+          });
+          Regions.select(REGIONS.findIndex((r) => r.n === 'Samarqand'));
+        },
+      };
+
+      /* =====================================================================
+         MODUL 12: People — 3D tilt kartalar
+         ===================================================================== */
+      const PEOPLE = [
+        { n: 'Al-Xorazmiy', y: 'taxminan 780–850', r: 'Matematik, astronom', d: 'Algebra fanining asoschisi. "Algoritm" so\'zi uning nomidan kelib chiqqan.', h: 190 },
+        { n: 'Imom Buxoriy', y: '810–870', r: 'Muhaddis', d: 'Hadislar to\'plami "Al-Jome as-Sahih" muallifi, Buxoroda tug\'ilgan.', h: 140 },
+        { n: 'Ibn Sino', y: '980–1037', r: 'Tabib, faylasuf', d: '"Tib qonuni" asari asrlar davomida tibbiyot darsligi bo\'lib xizmat qilgan.', h: 350 },
+        { n: 'Abu Rayhon Beruniy', y: '973–1048', r: 'Olim, sayyoh', d: 'Astronomiya, geografiya va tarixga oid ko\'plab asarlar yozgan ensiklopedist.', h: 30 },
+        { n: 'Amir Temur', y: '1336–1405', r: 'Sarkarda, davlat arbobi', d: 'Temuriylar davlatining asoschisi, poytaxti Samarqand.', h: 215 },
+        { n: 'Mirzo Ulug\'bek', y: '1394–1449', r: 'Astronom, hukmdor', d: 'Samarqanddagi rasadxona va "Ziji jadidi Ko\'ragoniy" yulduzlar jadvali muallifi.', h: 260 },
+        { n: 'Alisher Navoiy', y: '1441–1501', r: 'Shoir, mutafakkir', d: '"Xamsa" va boshqa asarlari bilan turkiy adabiy tilni yuksaltirgan.', h: 100 },
+        { n: 'Zahiriddin Bobur', y: '1483–1530', r: 'Shoir, hukmdor', d: 'Andijonda tug\'ilgan. "Boburnoma" asari tarixiy xotira durdonasi.', h: 5 },
+      ];
+
+      const People = {
+        init() {
+          const box = $('#peopleList');
+          PEOPLE.forEach((p) => {
+            const initials = p.n.replace(/^(Al-|Abu |Imom |Amir |Mirzo )/, '').slice(0, 1) + p.n.split(' ').pop().slice(0, 1);
+            const card = Utils.el('article', { class: 'person' },
+              Utils.el('div', { class: 'mono', 'aria-hidden': 'true', text: initials.toUpperCase() }),
+              Utils.el('h3', { text: p.n }),
+              Utils.el('div', { class: 'yrs', text: p.y + ' · ' + p.r }),
+              Utils.el('p', { text: p.d })
+            );
+            card.style.setProperty('--h', p.h);
+            card.addEventListener('pointermove', (e) => {
+              if (e.pointerType === 'touch') return;
+              const r = card.getBoundingClientRect();
+              const px = (e.clientX - r.left) / r.width;
+              const py = (e.clientY - r.top) / r.height;
+              card.style.setProperty('--ry', ((px - 0.5) * 14).toFixed(2) + 'deg');
+              card.style.setProperty('--rx', ((0.5 - py) * 14).toFixed(2) + 'deg');
+              card.style.setProperty('--gx', (px * 100).toFixed(1) + '%');
+              card.style.setProperty('--gy', (py * 100).toFixed(1) + '%');
+            });
+            card.addEventListener('pointerleave', () => {
+              card.style.setProperty('--rx', '0deg');
+              card.style.setProperty('--ry', '0deg');
+            });
+            box.append(card);
+          });
+        },
+      };
+
+      /* =====================================================================
+         MODUL 13: Pattern — simmetrik naqsh ustaxonasi
+         ===================================================================== */
+      const Pattern = (() => {
+        const cv = $('#patCanvas');
+        const ctx = cv.getContext('2d');
+        const SIZE = 560;
+        const PALETTE = [
+          { n: 'Firuza', c: '#0fb5c9' },
+          { n: 'Zumrad', c: '#22c55e' },
+          { n: 'Oltin', c: '#f4c95d' },
+          { n: 'Anor', c: '#ff4d6d' },
+          { n: 'Oq', c: '#ffffff' },
+          { n: 'Lojuvard', c: '#5b6ee8' },
+          { n: 'Ko\'p rang', c: 'rainbow' },
+        ];
+        const state = { folds: 8, brush: 3, mirror: true, color: 0, drawing: false, last: null, hue: 0, undo: [], autoId: 0 };
+
+        function currentColor() {
+          const c = PALETTE[state.color].c;
+          if (c !== 'rainbow') return c;
+          state.hue = (state.hue + 2.4) % 360;
+          return `hsl(${state.hue} 90% 60%)`;
+        }
+
+        function segment(a, b, color) {
+          const cx = SIZE / 2, cy = SIZE / 2;
+          const p0 = { x: a.x - cx, y: a.y - cy };
+          const p1 = { x: b.x - cx, y: b.y - cy };
+          ctx.strokeStyle = color;
+          ctx.shadowColor = color;
+          ctx.shadowBlur = 6;
+          ctx.lineWidth = state.brush;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          const variants = state.mirror
+            ? [[p0, p1], [Geo.reflectY(p0.x, p0.y), Geo.reflectY(p1.x, p1.y)]]
+            : [[p0, p1]];
+          for (let i = 0; i < state.folds; i++) {
+            const ang = (i * Math.PI * 2) / state.folds;
+            for (const [s, e] of variants) {
+              const rs = Geo.rotate(s.x, s.y, ang);
+              const re = Geo.rotate(e.x, e.y, ang);
+              ctx.beginPath();
+              ctx.moveTo(rs.x + cx, rs.y + cy);
+              ctx.lineTo(re.x + cx, re.y + cy);
+              ctx.stroke();
+            }
+          }
+        }
+
+        function toLocal(e) {
+          const r = cv.getBoundingClientRect();
+          return { x: ((e.clientX - r.left) * SIZE) / r.width, y: ((e.clientY - r.top) * SIZE) / r.height };
+        }
+
+        function snapshot() {
+          try {
+            state.undo.push(ctx.getImageData(0, 0, cv.width, cv.height));
+            if (state.undo.length > 8) state.undo.shift();
+          } catch (e) { /* xotira yetmasa o'tkazib yuboramiz */ }
+        }
+
+        function undo() {
+          const img = state.undo.pop();
+          if (!img) { Toast.show('Bekor qilinadigan chiziq yo\'q'); return; }
+          ctx.save();
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          ctx.putImageData(img, 0, 0);
+          ctx.restore();
+        }
+
+        function clear() {
+          stopAuto();
+          snapshot();
+          ctx.clearRect(0, 0, SIZE, SIZE);
+        }
+
+        function stopAuto() { state.autoId++; }
+
+        function auto() {
+          stopAuto();
+          snapshot();
+          const id = state.autoId;
+          const k = Utils.pick([2, 3, 4, 5, 6, 7, 9]);
+          const R = SIZE * 0.42;
+          let th = 0;
+          let prev = null;
+          const stepFn = () => {
+            if (id !== state.autoId) return;
+            for (let i = 0; i < 5 && th <= Math.PI * 2 + 0.05; i++) {
+              const r = R * Math.cos(k * th) * (0.65 + 0.35 * Math.sin(th * 3));
+              const pt = { x: SIZE / 2 + r * Math.cos(th), y: SIZE / 2 + r * Math.sin(th) };
+              if (prev) segment(prev, pt, currentColor());
+              prev = pt;
+              th += 0.025;
+            }
+            if (th <= Math.PI * 2 + 0.05) requestAnimationFrame(stepFn);
+            else Sound.play('ok');
+          };
+          requestAnimationFrame(stepFn);
+        }
+
+        function setupCanvas() {
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          cv.width = SIZE * dpr;
+          cv.height = SIZE * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        function init() {
+          setupCanvas();
+
+          const sw = $('#swatchList');
+          PALETTE.forEach((p, i) => {
+            const b = Utils.el('button', {
+              class: 'swatch' + (p.c === 'rainbow' ? ' rainbow' : ''),
+              type: 'button',
+              'aria-label': p.n,
+              'aria-pressed': String(i === state.color),
+              title: p.n,
+            });
+            b.style.setProperty('--c', p.c === 'rainbow' ? 'transparent' : p.c);
+            b.addEventListener('click', () => {
+              state.color = i;
+              $$('.swatch', sw).forEach((x, k) => x.setAttribute('aria-pressed', String(k === i)));
+            });
+            sw.append(b);
+          });
+
+          $('#foldRange').addEventListener('input', (e) => { state.folds = Number(e.target.value); $('#foldOut').textContent = e.target.value; });
+          $('#brushRange').addEventListener('input', (e) => { state.brush = Number(e.target.value); $('#brushOut').textContent = e.target.value; });
+          $('#mirrorChk').addEventListener('change', (e) => { state.mirror = e.target.checked; });
+          $('#patAuto').addEventListener('click', auto);
+          $('#patUndo').addEventListener('click', () => { stopAuto(); undo(); });
+          $('#patClear').addEventListener('click', clear);
+
+          cv.addEventListener('pointerdown', (e) => {
+            stopAuto();
+            cv.setPointerCapture(e.pointerId);
+            snapshot();
+            state.drawing = true;
+            state.last = toLocal(e);
+            segment(state.last, state.last, currentColor());
+          });
+
+          cv.addEventListener('pointermove', (e) => {
+            if (!state.drawing) return;
+            const p = toLocal(e);
+            segment(state.last, p, currentColor());
+            state.last = p;
+          });
+
+          const end = () => { state.drawing = false; state.last = null; };
+          cv.addEventListener('pointerup', end);
+          cv.addEventListener('pointercancel', end);
+
+          // Birinchi marta kirganda chiroyli namuna chizib beramiz
+          setTimeout(() => { if (!Utils.reducedMotion()) auto(); else { state.brush = 3; } }, 600);
+        }
+
+        return { init };
+      })();
+
+      /* =====================================================================
+         MODUL 14: Lanterns — tilak fonuslari
+         ===================================================================== */
+      const Lanterns = {
+        MAX: 24,
+        list: [],
+        render(text) {
+          const sky = $('#sky');
+          const lan = Utils.el('div', { class: 'lantern' }, Utils.el('div', { class: 'body', text }));
+          lan.style.left = Utils.rand(2, 88) + '%';
+          lan.style.setProperty('--t', Utils.rand(16, 28).toFixed(1) + 's');
+          lan.style.setProperty('--dl', '-' + Utils.rand(0, 14).toFixed(1) + 's');
+          lan.style.setProperty('--rise', (sky.clientHeight + 140) + 'px');
+          sky.append(lan);
+        },
+        add(text) {
+          const clean = text.trim().slice(0, 36);
+          if (!clean) { Toast.show('Avval tilak matnini yozing'); return; }
+          Lanterns.list.push(clean);
+          if (Lanterns.list.length > Lanterns.MAX) {
+            Lanterns.list.shift();
+            const first = $('#sky .lantern');
+            if (first) first.remove();
+          }
+          Store.set('wishes', Lanterns.list);
+          Lanterns.render(clean);
+          Sound.play('pop');
+          Toast.show('Fonus osmonga ko\'tarildi');
+        },
+        init() {
+          const saved = Store.get('wishes', null);
+          Lanterns.list = Array.isArray(saved) && saved.length ? saved.slice(-Lanterns.MAX) : ['Tinchlik', 'Ona yurt', 'Birlik', 'Ilm', 'Bayram'];
+          Lanterns.list.forEach((w) => Lanterns.render(String(w)));
+          const input = $('#wishInput');
+          $('#wishBtn').addEventListener('click', () => { Lanterns.add(input.value); input.value = ''; input.focus(); });
+          input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { Lanterns.add(input.value); input.value = ''; } });
+          $('#wishClear').addEventListener('click', () => {
+            $$('#sky .lantern').forEach((n) => n.remove());
+            Lanterns.list = [];
+            Store.remove('wishes');
+            Toast.show('Osmon tozalandi');
+          });
+        },
+      };
+
+      /* =====================================================================
+         MODUL 15: Quiz
+         ===================================================================== */
+      const BANK = [
+        { q: 'O\'zbekiston mustaqilligi qaysi sanada bayram qilinadi?', a: ['1-sentabr', '8-dekabr', '21-mart', '9-may'], c: 0, e: 'Mustaqillik kuni har yili 1-sentabrda nishonlanadi.' },
+        { q: 'O\'zbekiston poytaxti qaysi shahar?', a: ['Samarqand', 'Toshkent', 'Buxoro', 'Andijon'], c: 1, e: 'Poytaxt — Toshkent, mamlakatning eng yirik shahri.' },
+        { q: 'Davlat bayrog\'ida nechta yulduz bor?', a: ['8', '10', '12', '14'], c: 2, e: 'Bayroqning yuqori yo\'lida hilol va 12 ta yulduz tasvirlangan.' },
+        { q: 'Davlat gerbidagi afsonaviy qush qanday ataladi?', a: ['Semurg\'', 'Humo', 'Burgut', 'Qirg\'ovul'], c: 1, e: 'Gerbda qanotlarini yozgan Humo qushi tasvirlangan.' },
+        { q: 'Konstitutsiya kuni qachon nishonlanadi?', a: ['8-dekabr', '1-sentabr', '2-iyul', '14-yanvar'], c: 0, e: 'Konstitutsiya 1992-yil 8-dekabrda qabul qilingan.' },
+        { q: 'Davlat madhiyasining so\'zlari muallifi kim?', a: ['Abdulla Oripov', 'Erkin Vohidov', 'Cho\'lpon', 'Hamid Olimjon'], c: 0, e: 'So\'zlarni Abdulla Oripov yozgan, musiqasi Mutal Burhonovniki.' },
+        { q: 'Registon maydoni qaysi shaharda joylashgan?', a: ['Xiva', 'Buxoro', 'Termiz', 'Samarqand'], c: 3, e: 'Registon — Samarqandning ramziy markazi.' },
+        { q: '"Xamsa" asarining muallifi kim?', a: ['Bobur', 'Alisher Navoiy', 'Ulug\'bek', 'Ibn Sino'], c: 1, e: '"Xamsa" — Alisher Navoiyning besh dostondan iborat buyuk asari.' },
+        { q: 'Algebra fanining asoschisi hisoblangan olim kim?', a: ['Beruniy', 'Ulug\'bek', 'Al-Xorazmiy', 'Farobiy'], c: 2, e: 'Al-Xorazmiy algebra va hisob-kitob qoidalarini tizimga solgan.' },
+        { q: '"Tib qonuni" kitobini kim yozgan?', a: ['Ibn Sino', 'Imom Buxoriy', 'Navoiy', 'Bobur'], c: 0, e: 'Ibn Sinoning "Tib qonuni" asrlar davomida o\'qitilgan.' },
+        { q: 'Zahiriddin Bobur qaysi shaharda tug\'ilgan?', a: ['Samarqand', 'Andijon', 'Namangan', 'Qarshi'], c: 1, e: 'Bobur 1483-yilda Andijonda tug\'ilgan.' },
+        { q: 'O\'zbekistonda nechta viloyat bor?', a: ['10', '11', '12', '14'], c: 2, e: '12 viloyat, Qoraqalpog\'iston Respublikasi va Toshkent shahri — jami 14 hududiy birlik.' },
+        { q: 'Qoraqalpog\'iston Respublikasining markazi qaysi shahar?', a: ['Nukus', 'Urganch', 'Termiz', 'Qarshi'], c: 0, e: 'Markaz — Nukus.' },
+        { q: 'Xorazm viloyatining markazi qaysi?', a: ['Xiva', 'Urganch', 'Nukus', 'Guliston'], c: 1, e: 'Viloyat markazi Urganch, Xiva esa qadimiy shahar-muzey.' },
+        { q: 'Amir Temur qaysi shaharda tug\'ilgan?', a: ['Shahrisabz', 'Termiz', 'Jizzax', 'Marg\'ilon'], c: 0, e: 'Amir Temur Shahrisabzda tug\'ilgan.' },
+        { q: 'Bayroqning yuqori yo\'li qaysi rangda?', a: ['Yashil', 'Oq', 'Qizil', 'Ko\'k'], c: 3, e: 'Yuqorida ko\'k, o\'rtada oq, pastda yashil yo\'l joylashgan.' },
+        { q: 'Navro\'z bayrami odatda qaysi sanada?', a: ['21-mart', '1-yanvar', '1-may', '14-oktabr'], c: 0, e: 'Navro\'z bahorgi tengkunlik — 21-mart kunlari nishonlanadi.' },
+        { q: 'Mirzo Ulug\'bek mashhur bo\'lgan soha qaysi?', a: ['Tibbiyot', 'Astronomiya', 'Me\'morchilik', 'Dengizchilik'], c: 1, e: 'Ulug\'bek Samarqandda rasadxona qurdirib, yulduzlar jadvalini tuzdirgan.' },
+      ];
+
+      const Quiz = {
+        TOTAL: 8,
+        SECS: 15,
+        s: null,
+        timer: null,
+        show(id) {
+          $$('.quiz .screen').forEach((el) => el.classList.toggle('show', el.id === id));
+        },
+        updateBest() {
+          const best = Store.get('best', null);
+          $('#bestLine').textContent = best
+            ? `Eng yaxshi natijangiz: ${best.score} ball, ${best.correct}/${best.total} to'g'ri javob.`
+            : 'Hali natija yo\'q. Birinchi bo\'lib rekord o\'rnating.';
+        },
+        start() {
+          Sound.ensure();
+          Quiz.s = {
+            qs: Utils.shuffle(BANK).slice(0, Quiz.TOTAL),
+            i: 0, score: 0, streak: 0, correct: 0,
+            hint: false, left: Quiz.SECS, answered: false, log: [],
+          };
+          Quiz.show('scrPlay');
+          Quiz.ask();
+        },
+        hud() {
+          const s = Quiz.s;
+          $('#hudQ').textContent = `${s.i + 1}/${Quiz.TOTAL}`;
+          $('#hudScore').textContent = s.score;
+          $('#hudStreak').textContent = s.streak;
+          $('#hudTime').textContent = Math.ceil(s.left);
+        },
+        ask() {
+          const s = Quiz.s;
+          const item = s.qs[s.i];
+          const opts = Utils.shuffle(item.a.map((text, idx) => ({ text, ok: idx === item.c })));
+          s.cur = { item, opts };
+          s.answered = false;
+          s.left = Quiz.SECS;
+          $('#qText').textContent = item.q;
+          $('#qExplain').classList.remove('show');
+          $('#qNext').disabled = true;
+          $('#qNext').textContent = s.i === Quiz.TOTAL - 1 ? 'Natijani ko\'rish' : 'Keyingi savol';
+          $('#qHint').disabled = s.hint;
+          const box = $('#qOpts');
+          box.replaceChildren();
+          opts.forEach((o, idx) => {
+            const b = Utils.el('button', { class: 'opt', type: 'button', text: o.text });
+            b.addEventListener('click', () => Quiz.answer(idx));
+            box.append(b);
+          });
+          Quiz.hud();
+          Quiz.runTimer();
+        },
+        runTimer() {
+          clearInterval(Quiz.timer);
+          const s = Quiz.s;
+          const fill = $('#timeFill');
+          const bar = $('#timeBar');
+          const t0 = performance.now();
+          Quiz.timer = setInterval(() => {
+            s.left = Math.max(0, Quiz.SECS - (performance.now() - t0) / 1000);
+            fill.style.transform = `scaleX(${s.left / Quiz.SECS})`;
+            bar.classList.toggle('warn', s.left < 5);
+            $('#hudTime').textContent = Math.ceil(s.left);
+            if (s.left < 5 && Math.abs(s.left - Math.round(s.left)) < 0.06) Sound.play('tick');
+            if (s.left <= 0) Quiz.answer(-1);
+          }, 100);
+        },
+        answer(idx) {
+          const s = Quiz.s;
+          if (s.answered) return;
+          s.answered = true;
+          clearInterval(Quiz.timer);
+          const { item, opts } = s.cur;
+          const ok = idx >= 0 && opts[idx].ok;
+          const pts = Scoring.points(ok, s.left, s.streak);
+          const buttons = $$('#qOpts .opt');
+          buttons.forEach((b, k) => {
+            b.disabled = true;
+            if (opts[k].ok) b.classList.add('right');
+            else if (k === idx) b.classList.add('wrong');
+          });
+          if (ok) { s.score += pts; s.streak++; s.correct++; Sound.play('ok'); }
+          else { s.streak = 0; Sound.play('bad'); }
+          s.log.push({ q: item.q, ok, right: item.a[item.c] });
+          const ex = $('#qExplain');
+          ex.textContent = (idx < 0 ? 'Vaqt tugadi. ' : ok ? `To'g'ri! +${pts} ball. ` : 'Afsuski, noto\'g\'ri. ') + item.e;
+          ex.classList.add('show');
+          $('#qNext').disabled = false;
+          $('#qHint').disabled = true;
+          Quiz.hud();
+        },
+        hint() {
+          const s = Quiz.s;
+          if (!s || s.hint || s.answered) return;
+          s.hint = true;
+          const wrongs = $$('#qOpts .opt').filter((_, k) => !s.cur.opts[k].ok);
+          Utils.shuffle(wrongs).slice(0, 2).forEach((b) => { b.classList.add('gone'); b.disabled = true; });
+          $('#qHint').disabled = true;
+          Sound.play('swap');
+        },
+        next() {
+          const s = Quiz.s;
+          s.i++;
+          if (s.i >= Quiz.TOTAL) Quiz.finish(); else Quiz.ask();
+        },
+        finish() {
+          const s = Quiz.s;
+          clearInterval(Quiz.timer);
+          Quiz.show('scrEnd');
+          const pct = Math.round((s.correct / Quiz.TOTAL) * 100);
+          $('#endTitle').textContent = Scoring.rank(s.correct, Quiz.TOTAL);
+          $('#endLine').textContent = `${s.correct} / ${Quiz.TOTAL} to'g'ri javob, jami ${s.score} ball.`;
+          $('#ringTxt').textContent = pct + '%';
+          const fg = $('#ringFg');
+          fg.style.strokeDashoffset = '314.16';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            fg.style.strokeDashoffset = String(314.16 * (1 - pct / 100));
+          }));
+          const list = $('#reviewList');
+          list.replaceChildren();
+          s.log.forEach((l) => {
+            list.append(Utils.el('li', { class: l.ok ? 'ok' : 'no', text: `${l.q} — ${l.right}` }));
+          });
+          const best = Store.get('best', null);
+          if (!best || s.score > best.score) {
+            Store.set('best', { score: s.score, correct: s.correct, total: Quiz.TOTAL });
+            if (best) Toast.show('Yangi rekord!');
+          }
+          Quiz.updateBest();
+          if (pct >= 60) { Sound.play('win'); Confetti.burst(innerWidth / 2, innerHeight / 3, 180); }
+        },
+        init() {
+          Quiz.updateBest();
+          $('#qStart').addEventListener('click', Quiz.start);
+          $('#qAgain').addEventListener('click', Quiz.start);
+          $('#qNext').addEventListener('click', Quiz.next);
+          $('#qHint').addEventListener('click', Quiz.hint);
+          document.addEventListener('keydown', (e) => {
+            if (!Quiz.s || !$('#scrPlay').classList.contains('show')) return;
+            const n = Number(e.key);
+            if (n >= 1 && n <= 4) { const b = $$('#qOpts .opt')[n - 1]; if (b && !b.disabled) b.click(); }
+            if (e.key === 'Enter' && !$('#qNext').disabled && document.activeElement === document.body) Quiz.next();
+          });
+        },
+      };
+
+      /* =====================================================================
+         MODUL 16: Tests — mini test dvigateli (sahifa pastida natija)
+         ===================================================================== */
+      const Tests = {
+        results: [],
+        assert(cond, msg) { if (!cond) throw new Error(msg || 'assert failed'); },
+        eq(a, b, msg) { Tests.assert(JSON.stringify(a) === JSON.stringify(b), `${msg || 'eq'}: ${JSON.stringify(a)} !== ${JSON.stringify(b)}`); },
+        near(a, b, eps = 1e-9) { Tests.assert(Math.abs(a - b) < eps, `near: ${a} vs ${b}`); },
+        run(name, fn) {
+          try { fn(); Tests.results.push({ name, ok: true }); }
+          catch (e) { Tests.results.push({ name, ok: false, err: e.message }); }
+        },
+        suite() {
+          const { run, eq, near, assert } = Tests;
+
+          run('Utils.clamp chegaralarni ushlaydi', () => {
+            eq(Utils.clamp(5, 0, 3), 3);
+            eq(Utils.clamp(-2, 0, 3), 0);
+            eq(Utils.clamp(2, 0, 3), 2);
+          });
+
+          run('Utils.fmt raqamni bo\'sh joy bilan ajratadi', () => {
+            eq(Utils.fmt(448978), '448 978');
+            eq(Utils.fmt(12), '12');
+            eq(Utils.fmt(1000000), '1 000 000');
+          });
+
+          run('Utils.shuffle elementlarni yo\'qotmaydi', () => {
+            const src = [1, 2, 3, 4, 5, 6, 7, 8];
+            const out = Utils.shuffle(src);
+            eq(out.slice().sort(), src);
+            eq(src, [1, 2, 3, 4, 5, 6, 7, 8], 'asl massiv o\'zgarmasligi kerak');
+          });
+
+          run('Utils.elapsed kun/soat/daqiqa/soniyani to\'g\'ri hisoblaydi', () => {
+            const from = new Date(2000, 0, 1, 0, 0, 0);
+            const to = new Date(2000, 0, 3, 4, 5, 6);
+            eq(Utils.elapsed(from, to), { days: 2, hours: 4, minutes: 5, seconds: 6 });
+          });
+
+          run('Utils.yearsSince', () => {
+            eq(Utils.yearsSince(1991, new Date(2026, 9, 7)), 35);
+          });
+
+          run('Geo.rotate 90 gradusga aylantiradi', () => {
+            const p = Geo.rotate(1, 0, Math.PI / 2);
+            near(p.x, 0, 1e-9);
+            near(p.y, 1, 1e-9);
+          });
+
+          run('Geo.rotate uzunlikni saqlaydi', () => {
+            const p = Geo.rotate(3, 4, 1.234);
+            near(Math.hypot(p.x, p.y), 5, 1e-9);
+          });
+
+          run('Geo.reflectY ko\'zgu aksini beradi', () => {
+            eq(Geo.reflectY(2, 5), { x: 2, y: -5 });
+          });
+
+          run('Geo.starPoints 5 uchli yulduz uchun 10 nuqta qaytaradi', () => {
+            eq(Geo.starPoints(0, 0, 10, 4, 5).split(' ').length, 10);
+          });
+
+          run('Scoring.points to\'g\'ri/noto\'g\'ri javob', () => {
+            eq(Scoring.points(false, 10, 3), 0);
+            eq(Scoring.points(true, 10, 0), 140);
+            eq(Scoring.points(true, 10, 2), 160);
+            eq(Scoring.points(true, 10, 99), 190, 'ketma-ketlik bonusi 5 bilan cheklangan');
+          });
+
+          run('Scoring.rank darajalari', () => {
+            eq(Scoring.rank(8, 8), 'Vatan farzandi');
+            eq(Scoring.rank(6, 8), 'Chin vatanparvar');
+            eq(Scoring.rank(4, 8), 'Izlanuvchi');
+            eq(Scoring.rank(1, 8), 'Yangi sayohatchi');
+          });
+
+          run('Test bazasi to\'g\'ri tuzilgan', () => {
+            BANK.forEach((b, i) => {
+              assert(b.a.length === 4, `${i}-savolda 4 ta variant bo'lishi kerak`);
+              assert(b.c >= 0 && b.c < 4, `${i}-savolda c noto'g'ri`);
+              assert(new Set(b.a).size === 4, `${i}-savolda variantlar takrorlanmasligi kerak`);
+            });
+            assert(BANK.length >= Quiz.TOTAL, 'savollar soni yetarli');
+          });
+
+          run('Hududlar soni 14 ta va nomlari noyob', () => {
+            eq(REGIONS.length, 14);
+            eq(new Set(REGIONS.map((r) => r.n)).size, 14);
+          });
+
+          run('Hududlar xaritasida katakchalar ustma-ust tushmaydi', () => {
+            const used = new Set();
+            REGIONS.forEach((r) => {
+              const [row, col, span] = r.pos;
+              for (let c = col; c < col + span; c++) {
+                const key = row + ':' + c;
+                assert(!used.has(key), `${r.n} katagi band: ${key}`);
+                used.add(key);
+              }
+            });
+          });
+
+          run('Store o\'qish/yozish', () => {
+            Store.set('__t', { a: 1 });
+            const v = Store.get('__t', null);
+            Store.remove('__t');
+            assert(v === null || v.a === 1, 'qiymat qaytishi kerak (yoki storage yo\'q)');
+            eq(Store.get('__yoq__', 'zaxira'), 'zaxira');
+          });
+
+          run('Timeline yillari tartiblangan ro\'yxat', () => {
+            assert(TIMELINE.length >= 8, 'voqealar yetarli');
+            TIMELINE.forEach((t) => assert(t.y && t.t && t.d, 'bo\'sh maydon bor'));
+          });
+        },
+        render() {
+          const pass = Tests.results.filter((r) => r.ok).length;
+          const total = Tests.results.length;
+          $('#testSummary').textContent = `Kod testlari: ${pass}/${total} muvaffaqiyatli`;
+          const ul = $('#testList');
+          Tests.results.forEach((r) => {
+            ul.append(Utils.el('li', { class: r.ok ? 'pass' : 'fail', text: r.name + (r.ok ? '' : ' — ' + r.err) }));
+          });
+          if (pass !== total) $('#selfTest').open = true;
+        },
+        init() { Tests.suite(); Tests.render(); },
+      };
+
+      /* =====================================================================
+         ISHGA TUSHIRISH
+         ===================================================================== */
+      const boot = [
+        ['Theme', Theme.init], ['Sound', Sound.init], ['Ambient', Ambient.init],
+        ['Hero', Hero.init], ['Stats', Stats.init], ['Timeline', Timeline.init],
+        ['Flag', Flag.init], ['Symbols', Symbols.init], ['Regions', Regions.init],
+        ['People', People.init], ['Pattern', Pattern.init], ['Lanterns', Lanterns.init],
+        ['Quiz', Quiz.init], ['Tests', Tests.init],
+      ];
+
+      boot.forEach(([name, fn]) => {
+        try { fn(); }
+        catch (err) { console.error('Modul xatosi: ' + name, err); }
+      });
+
+    })();
+  </script>
+</body>
+
+</html>
